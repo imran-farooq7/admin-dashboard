@@ -4,6 +4,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import Avvvatars from "avvvatars-react";
 import { MenuIcon, ShieldCheckIcon, XIcon } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
@@ -56,7 +57,16 @@ export default function Navbar() {
 									<div>
 										<Menu.Button className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
 											<span className="sr-only">Open user menu</span>
-											<Avvvatars value={"U"} />
+											{session?.user?.image && (
+												<Image
+													className="h-8 w-8 rounded-full object-contain focus:outline-none"
+													src={session.user?.image}
+													alt={"user"}
+													width={32}
+													height={32}
+												/>
+											)}
+											{!session?.user?.image && <Avvvatars value={"U"} />}
 										</Menu.Button>
 									</div>
 									<Transition
@@ -139,7 +149,16 @@ export default function Navbar() {
 								<>
 									<div className="flex items-center px-4">
 										<div className="flex-shrink-0">
-											<Avvvatars value={"U"} />
+											{session.user?.image && (
+												<Image
+													className="h-8 w-8 rounded-full object-contain focus:outline-none"
+													src={session.user?.image}
+													alt={"user"}
+													width={32}
+													height={32}
+												/>
+											)}
+											{!session.user?.image && <Avvvatars value={"U"} />}
 										</div>
 										<div className="ml-3">
 											<div className="text-base font-medium text-gray-800">
