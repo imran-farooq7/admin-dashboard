@@ -1,5 +1,9 @@
 "use client";
 
 export default function Search() {
-  return <div>search</div>;
+	return (
+		<div className="relative mt-5 max-w-md">
+			<label htmlFor=""></label>
+		</div>
+	);
 }
